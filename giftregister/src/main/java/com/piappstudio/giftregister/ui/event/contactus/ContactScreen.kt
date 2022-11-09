@@ -14,9 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.NavigateNext
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -29,7 +27,6 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -57,7 +54,7 @@ fun ContactScreen(viewModel: ContactScreenViewModel = hiltViewModel()) {
                 .padding(it)
                 .fillMaxSize()
         ) {
-            val (list, appversion) = createRefs()
+            val (list,appversion) = createRefs()
 
             Text(
                 text = stringResource(R.string.app_version) + viewModel.getAppVersion(),
@@ -114,12 +111,17 @@ fun ContactScreen(viewModel: ContactScreenViewModel = hiltViewModel()) {
 
                 CardDetails(
                     text = stringResource(R.string.digital_diary),
-                    painter = painterResource(id = R.drawable.diary)
+                    painter = painterResource(id = R.drawable.diary), appUrl = stringResource(R.string.digital_diary_url)
                 )
 
                 CardDetails(
                     text = "Fresh Look",
-                    painter = painterResource(id = R.drawable.freshlook)
+                    painter = painterResource(id = R.drawable.freshlook), appUrl = stringResource(R.string.fresh_look_url)
+                )
+                CardDetails(
+                    text = "Travel Insurance",
+                    painter = painterResource(id = R.drawable.travelinsurance), appUrl = stringResource(
+                                            R.string.travel_insurance_url)
                 )
 
                 Spacer(modifier = Modifier.height(Dimen.fourth_space))
@@ -172,7 +174,8 @@ fun ContactScreen(viewModel: ContactScreenViewModel = hiltViewModel()) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CardDetails(painter: Painter, text: String) {
+fun CardDetails(painter: Painter, text: String,appUrl: String) {
+    val uriHandler = LocalUriHandler.current
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -185,7 +188,10 @@ fun CardDetails(painter: Painter, text: String) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            IconButton(onClick = { }) {
+
+            IconButton(onClick = { uriHandler.openUri(appUrl)
+
+            }) {
                 Box(
                     modifier = Modifier
                         .padding(Dimen.space)

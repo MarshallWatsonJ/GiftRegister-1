@@ -82,6 +82,9 @@
     <string name="linkedin_link">https://www.linkedin.com/company/piappstudio/</string>
     <string name="facebook_link">https://www.facebook.com/realpiappstudio</string>
     <string name="app_version">App Version: </string>
+    <string name="digital_diary_url">https://play.google.com/store/apps/details?id=com.bob.offlinediary</string>
+    <string name="fresh_look_url">https://play.google.com/store/apps/details?id=com.piappstudio.freshlook</string>
+    <string name="travel_insurance_url">https://play.google.com/store/apps/details?id=com.piappstudio.travelasst</string>
 
 
 </resources>
